@@ -4,9 +4,10 @@ function Relogio() {
     var min = data.getMinutes() < 10 ? "0" + data.getMinutes() : data.getMinutes()
     var seg = data.getSeconds() < 10 ? "0" + data.getSeconds() : data.getSeconds()
     var Relogio = hor + ":" + min  + ":" + seg;
+    
     return (
     <div className="Relogio">
-        <p>{Relogio}</p>
+        <p>{data.toLocaleDateString()} {Relogio}</p>
     </div>
     );
 }
