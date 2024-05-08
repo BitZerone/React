@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Relogio from './Relogio';
-import Letreiro from './Letreiro';
-
+import Rotas from './Rotas';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function Executar(){
-  root.render(
-    <React.StrictMode>
-      <Letreiro />
-      <Relogio />
-    </React.StrictMode>
-  );
-}
-
-setInterval(Executar,1000);
+root.render(
+  <React.StrictMode>
+    <Rotas />
+  </React.StrictMode>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
