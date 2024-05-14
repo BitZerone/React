@@ -1,60 +1,72 @@
 import './Contador.css';
+import React, {useState} from 'react';
+import maisImage from './img/+.jpg';
+import menosImage from './img/-.jpg';
+import homemImage from './img/homem.png';
+import mulherImage from './img/mulher.png';
+import resetImage from './img/reset.png';
 
 function Contador() {
+    const [totalPessoas, setTotalPessoas] = useState(0);
+    const [totalHomens, setTotalHomens] = useState(0);
+    const [totalMulheres, setTotalMulheres] = useState(0);
+
     return (
         <div className="main">
-            <img src="img/reset.png" className="reset" onClick={Resetar()} />
+            <img src={resetImage} className="reset" onClick={Resetar} />
             <h1>Total</h1>
-            <span id="totalPessoas" className="resp">0</span>
+            <span id="totalPessoas" className="resp">{totalPessoas}</span>
             <div className="Pessoas" style={{margin: "50px 0"}}>
                 <div className="divHoMu"  style={{marginRight: "100px"}}>
-                    <img alt="Homem" src="img/homem.png" style={{height: "200px"}}/>
+                    <img alt="Homem" src={homemImage} style={{height: "200px"}}/>
                     <div className="divMaisMenos">
-                        <img src="img/+.jpg" className="efeito" onClick={Incrementa('H')} />
-                        <img src="img/-.jpg" className="efeito" onClick={Decrementa('H')} />
+                        <img src={maisImage} className="efeito" onClick={() => Incrementa('H')} />
+                        <img src={menosImage} className="efeito" onClick={() => Decrementa('H')} />
                     </div>
                 </div>
                 <div className="divHoMu">
-                    <img alt="Mulher" src="img/mulher.png" style={{height: "200px"}}/>
+                    <img alt="Mulher" src={mulherImage} style={{height: "200px"}}/>
                     <div className="divMaisMenos">
-                        <img src="img/+.jpg" className="efeito" onClick={Incrementa('M')} />
-                        <img src="img/-.jpg" className="efeito" onClick={Decrementa('M')} />
+                        <img src={maisImage} className="efeito" onClick={() => Incrementa('M')} />
+                        <img src={menosImage} className="efeito" onClick={() => Decrementa('M')} />
                     </div>
                 </div>
             </div>
             <div className="divResps">
                 <div className="divHoMu" style={{marginRight: "120px"}}>
                     <h3 style={{margin: "0 auto"}}>Homens</h3>
-                    <span id="homemResp" className="resp">0</span>
+                    <span id="homemResp" className="resp">{totalHomens}</span>
                 </div>
-                <div className="divHoMu" style={{marginRight: "120px"}}>
+                <div className="divHoMu">
                     <h3 style={{margin: "0 auto"}}>Mulheres</h3>
-                    <span id="mulherResp" className="resp">0</span>
+                    <span id="mulherResp" className="resp">{totalMulheres}</span>
                 </div>
             </div>
         </div>
     );
 
     function Incrementa(gen){
-        const genResp = gen === 'H' ? 'homemResp' : 'mulherResp';
-        const totalSpan = document.getElementById('totalPessoas');
-        const genValue = parseInt(document.getElementById(genResp).textContent) + 1;
-        document.getElementById(genResp).textContent = genValue;
-        totalSpan.textContent = parseInt(totalSpan.textContent) + 1;
+        if (gen === 'H') {
+            setTotalHomens(totalHomens+1);
+        } else {
+            setTotalMulheres(totalMulheres+1);
+        }
+        setTotalPessoas(totalPessoas+1);
     }
 
     function Decrementa(gen){
-        const genResp = gen === 'H' ? 'homemResp' : 'mulherResp';
-        const totalSpan = document.getElementById('totalPessoas');
-        const genValue = parseInt(document.getElementById(genResp).textContent) - 1;
-        document.getElementById(genResp).textContent = genValue;
-        totalSpan.textContent = parseInt(totalSpan.textContent) - 1;
+        if (gen === 'H') {
+            setTotalHomens(totalHomens-1);
+        } else {
+            setTotalMulheres(totalMulheres-1);
+        }
+        setTotalPessoas(totalPessoas-1);
     }
 
     function Resetar(){
-        document.getElementById('homemResp').textContent = '0';
-        document.getElementById('mulherResp').textContent = '0';
-        document.getElementById('totalPessoas').textContent = '0';
+        setTotalHomens(0);
+        setTotalMulheres(0);
+        setTotalPessoas(0);
     }
 }
 
