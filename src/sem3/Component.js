@@ -44,10 +44,77 @@ export function Avatar({imagem = 's'}){
     );
 }
 
+function getImageUrl(pessoa, size = 's'){
+    return (
+        'https://i.imgur.com/' +
+        pessoa.imageId +
+        size +
+        '.jpeg'
+    );
+}
+
 function Pacote({enviado, nome}){
     return (
         <li>{nome} {enviado && ' ✓'}</li>
     );
+}
+
+function List(){
+    const pessoas = [
+        {
+            id: 1,
+            nome: "Cleide",
+            profissao: "domadora de cavalos"
+        },
+        {
+            id: 2,
+            nome: "Jonathan",
+            profissao: "pugilista",
+            alcunha: "Jojo",
+            imageId:'fE2Q0kS'
+        },
+        {
+            id: 3,
+            nome: "Klaiton",
+            profissao: "pugilista",
+            alcunha: "O bom de guerra",
+            imageId: 'Mv2WRtP'
+        },
+        {
+            id: 4,
+            nome: "Carlinhos",
+            profissao: "crítico gastronômico"
+        }
+    ];
+    const pugilistas = pessoas.filter(pessoa => pessoa.profissao === "pugilista");
+    const listItens = pugilistas.map(pessoa =>
+        <li>
+            <img 
+                src={getImageUrl(pessoa)}
+                alt={pessoa.nome}
+            />
+            <p>
+                <b>{pessoa.nome}</b>
+                {' ' + pessoa.profissao + ' '}
+                conhecido por {pessoa.alcunha}
+            </p>
+        </li>
+    );
+
+    return <ul>{listItens}</ul>
+}
+
+function Cup({ guest }){
+    return <h2>Chá para o convidado #{guest}</h2>;
+}
+
+function TeaGathering(){
+    let cups = [];
+    for (let index = 1; index <= 5; index++) {
+        cups.push(<Cup key={index} guest={index}/>);
+    }
+
+    return cups;
 }
 
 function Component() {
@@ -72,6 +139,10 @@ function Component() {
                 enviado={true}
                 nome="Mandioca"
             />
+            <h1>1.7</h1>
+            <List />
+            <h1>1.8</h1>
+            <TeaGathering />
         </>
     );
 }
