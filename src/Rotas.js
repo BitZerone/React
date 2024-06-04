@@ -5,6 +5,7 @@ import Index1 from "./sem1/Index1";
 import Index2 from "./sem2/Index2";
 import Index3 from "./sem3/Index3";
 import Index4 from "./sem4/Index4";
+import Index5 from "./sem5/Index5";
 import BucketList from './sem4/BucketList';
 import Counter from './sem4/Counter';
 import CounterList from './sem4/CounterList';
@@ -19,6 +20,9 @@ import List4 from './sem4/List4';
 import MovingDot from './sem4/MovingDot';
 import ShapeEditor from './sem4/ShapeEditor';
 import Toolbar from './sem4/Toolbar';
+import Quiz from './sem5/Quiz';
+import Ticket from './sem5/Ticket';
+import Accordion from './sem5/Accordion';
 
 export default function Rotas(){
     return (
@@ -43,6 +47,10 @@ export default function Rotas(){
             <Route path="/sem4/movingdot" element={<MovingDot />} />
             <Route path="/sem4/shapeeditor" element={<ShapeEditor />} />
             <Route path="/sem4/toolbar" element={<Toolbar />} />
+            <Route path="/sem5" element={<Index5 />} />
+            <Route path="/sem5/quiz" element={<Quiz />} />
+            <Route path="/sem5/ticket" element={<Ticket />} />
+            <Route path="/sem5/accordion" element={<Accordion />} />
         </Routes>
         </BrowserRouter>
     )
